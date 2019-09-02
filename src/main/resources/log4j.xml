@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+    
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%-10t] %-5p (%c) %m - [linea:%L]%n" />
+        </layout>
+    </appender>
+    
+    <appender name="VALORADOS_TRAZ" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${jboss.server.log.dir}/valorados-ejb.log" />
+        <param name="DatePattern" value="'.'yyyyMMdd" />
+        <param name="Append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p [%c] (%t) %m%n" />
+        </layout>
+    </appender>
+    
+    <logger name="org.apache" additivity="false">
+        <level value="ERROR"/>
+    </logger>
+    
+    <root>
+        <priority value="DEBUG"/>
+        <!--<appender-ref ref="VALORADOS_TRAZ"/>-->
+        <appender-ref ref="CONSOLE" />
+    </root>
+    
+</log4j:configuration>
